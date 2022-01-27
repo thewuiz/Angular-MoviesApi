@@ -1,0 +1,87 @@
+<header>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Movies</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarScroll"
+        aria-controls="navbarScroll"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul
+          class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+          style="--bs-scroll-height: 100px;"
+        >
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              aria-current="page"
+              routerLinkActive="active"
+              routerLink="/movies-api"
+            >
+              Inicio
+            </a>
+          </li>
+
+          <!-- ==================================================================================
+          ================================================================================== -->
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarScrollingDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Generos
+            </a>
+            <ul
+              class="dropdown-menu bg-dark"
+              aria-labelledby="navbarScrollingDropdown"
+            >
+              <li *ngFor="let genre of genresMovies">
+                <a
+                  class="dropdown-item bg-dark text-white"
+                  [routerLink]="['genre', genre.id, genre.name]"
+                  routerLinkActive="active"
+                >
+                  {{ genre.name }}
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- ==================================================================================
+          ================================================================================== -->
+        </ul>
+        <form class="d-flex">
+          <div class="input-group col-12">
+            <!-- ================================================================================================== -->
+            <!-- ============================== SEARCH INPUT ====================================================== -->
+            <input
+              [(ngModel)]="searchMovie"
+              class="form-control"
+              placeholder="Buscar pelicula "
+              name="input-searchMovie"
+            />
+            <a
+              class="btn btn-outline-light"
+              type="button"
+              [routerLink]="['/movies-api/search', searchMovie]"
+              id="btn-SearchMovie"
+            >
+              Buscar
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>

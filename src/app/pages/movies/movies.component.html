@@ -1,0 +1,128 @@
+<div class="container p-2">
+  <div class="row">
+    <!-- ================================================================================================== -->
+    <!-- =========================== SPINNER LOADED ======================================================= -->
+    <div *ngIf="show_spinner" class="text-center p-3">
+      <div class="spinner-grow text-light" role="status">
+        <span class="text-white">Loading...</span>
+      </div>
+    </div>
+
+    <div *ngIf="!show_spinner">
+      <!-- ================================================================================================== -->
+      <!-- =========================== CAROUSEL SLIDE ======================================================= -->
+      <div class="row" *ngIf="movies.length > 0">
+        <div
+          id="carouselExampleCaptions"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <button
+              *ngFor="
+                let movie of movies?.slice(0, 10);
+                let index = index;
+                let isFirst = first
+              "
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              [attr.data-bs-slide-to]="index"
+              [ngClass]="{ active: isFirst }"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+          </div>
+          <div class="carousel-inner">
+            <div
+              *ngFor="
+                let movie of movies?.slice(0, 10);
+                let index = index;
+                let isFirst = first
+              "
+              [ngClass]="{ active: isFirst }"
+              class="carousel-item"
+            >
+              <img
+                [src]="movie.backdrop_path"
+                class="d-block w-100"
+                alt="..."
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h1>{{ movie.title }}</h1>
+                <p>
+                  {{ movie.overview }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
+      <h1 class="pt-1 text-white">{{ titulo }}</h1>
+      <!-- ================================================================================================== -->
+      <!-- =========================== CARD GROUP MOVIES ==================================================== -->
+      <div class="row row-cols-1 row-cols-md-4 row-cols-lg-5 row-cols-sm-2">
+        <div class="col" *ngFor="let movie of movies">
+          <div class="card text-white bg-dark mb-3">
+            <img [src]="movie.poster_path" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h3 class="card-title text-white">{{ movie.title }}</h3>
+              <a
+                type="button"
+                class="btn btn-primary"
+                [routerLink]="['/movies-api/movie', movie.id]"
+              >
+                Ver mas
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================================================== -->
+      <!-- =========================== PAGINATION MOVIES ==================================================== -->
+      <div class="row">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-end">
+            <li type="button" class="page-item">
+              <a
+                (click)="paginationMovies(-1, page, path)"
+                [ngClass]="{ disabled: page === 1 }"
+                class="btn btn-dark me-1"
+              >
+                Anterior
+              </a>
+            </li>
+            <li type="button" class="page-item">
+              <a
+                (click)="paginationMovies(1, page, path)"
+                [ngClass]="{ disabled: movies.length === 0 }"
+                class="btn btn-dark"
+              >
+                Siguiente
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

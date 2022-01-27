@@ -1,0 +1,22 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li type="button" class="page-item">
+      <a
+        (click)="paginationMovies(-1, page, path)"
+        [ngClass]="{ disabled: page === 1 }"
+        class="btn btn-dark me-1"
+      >
+        Anterior
+      </a>
+    </li>
+    <li type="button" class="page-item">
+      <a
+        (click)="paginationMovies(1, page, path)"
+        [ngClass]="{ disabled: page < 1 }"
+        class="btn btn-dark"
+      >
+        Siguiente
+      </a>
+    </li>
+  </ul>
+</nav>

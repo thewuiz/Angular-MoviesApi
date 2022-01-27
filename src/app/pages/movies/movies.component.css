@@ -1,0 +1,44 @@
+.list-group {
+  height: 400px;
+  margin-bottom: 10px;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* =============================== CARD ============================================= */
+.card-img-top {
+  height: 40vh;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* .card-body {
+  height: 250px;
+} */
+
+/* =============================== CAROUSEL ============================================= */
+.carousel-item img {
+  width: 100%;
+  object-fit: cover;
+  max-height: 500px;
+}
+
+.carousel-caption {
+  background: linear-gradient(20deg, #020615, 70%, transparent) !important;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.carousel-caption p {
+  text-align: justify;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* =============================== spinner ============================================= */
+.spinner-grow {
+  height: 200px;
+  width: 200px;
+}
