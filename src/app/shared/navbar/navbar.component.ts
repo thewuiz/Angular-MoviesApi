@@ -15,7 +15,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGenresMovies();
-    this.scroll();
   }
 
   //===================================================================================
@@ -30,17 +29,4 @@ export class NavbarComponent implements OnInit {
       },
     });
   }
-
-  //===================================================================================
-  //===================================================================================
-  scroll = (): void => {
-    var nav = document.querySelector('nav');
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 100) {
-        nav?.classList.add('nav-bgp');
-      } else {
-        nav?.classList.remove('nav-bgp');
-      }
-    });
-  };
 }

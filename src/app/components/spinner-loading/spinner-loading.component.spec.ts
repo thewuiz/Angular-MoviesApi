@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaginationComponent } from './pagination.component';
+import { SpinnerLoadingComponent } from './spinner-loading.component';
 
-describe('PaginationComponent', () => {
-  let component: PaginationComponent;
-  let fixture: ComponentFixture<PaginationComponent>;
+describe('SpinnerLoadingComponent', () => {
+  let component: SpinnerLoadingComponent;
+  let fixture: ComponentFixture<SpinnerLoadingComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PaginationComponent ]
+      declarations: [ SpinnerLoadingComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PaginationComponent);
+    fixture = TestBed.createComponent(SpinnerLoadingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -93,9 +93,40 @@ export class MoviesComponent implements OnInit, OnDestroy {
         },
         error: (err) => {
           if (this.movies.length === 0) {
-            Swal.fire('Ups!', 'Ocurrio un error: ' + err.error.errors, 'error');
+            Swal.fire(
+              'Ups!',
+              `Ocurrio un error: Status: ${err.error.errors}`,
+              'error'
+            );
             this.router.navigate([this.path, 1]);
           }
+        },
+      })
+    );
+  }
+
+  //===================================================================================
+  //============================= GET GENRE NAME ======================================
+  getGenreName(genreId: string): string {
+    let genreName = '';
+    this.genresMovies.forEach((genre) => {
+      if (genre.id.toString() === genreId) {
+        genreName = genre.name;
+      }
+    });
+    return genreName;
+  }
+
+  //===================================================================================
+  //============================= GET GENRES MOVIES ===================================
+  getGenresMovies() {
+    this.subscription.add(
+      this.apiService.getGenresMovies().subscribe({
+        next: (genres) => {
+          this.genresMovies = genres;
+        },
+        error: (err) => {
+          console.log(err.error);
         },
       })
     );
@@ -131,33 +162,6 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
       return this.getPopularMovies(page);
     });
-  }
-
-  //===================================================================================
-  //============================= GET GENRE NAME ======================================
-  getGenreName(genreId: string): string {
-    let genreName = '';
-    this.genresMovies.forEach((genre) => {
-      if (genre.id.toString() === genreId) {
-        genreName = genre.name;
-      }
-    });
-    return genreName;
-  }
-
-  //===================================================================================
-  //============================= GET GENRES MOVIES ===================================
-  getGenresMovies() {
-    this.subscription.add(
-      this.apiService.getGenresMovies().subscribe({
-        next: (genres) => {
-          this.genresMovies = genres;
-        },
-        error: (err) => {
-          console.log(err.error);
-        },
-      })
-    );
   }
 
   //===================================================================================

@@ -9,6 +9,7 @@ import { MoviesComponent } from './movies/movies.component';
 import { SharedModule } from '../shared/shared.module';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { SafePipe } from '../pipes/safe.pipe';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   declarations: [
@@ -17,13 +18,14 @@ import { SafePipe } from '../pipes/safe.pipe';
     MovieDetailsComponent,
     SafePipe,
   ],
-  exports: [MoviesComponent],
+  exports: [MoviesComponent, MovieDetailsComponent],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    ComponentsModule,
   ],
 })
 export class PagesModule {}

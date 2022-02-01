@@ -1,8 +1,11 @@
-<div *ngIf="movie" class="container p-2">
+<div class="container-lg p-md-2 p-sm-0">
   <div class="row">
-    <!-- ===================================================================================================
-    ==================================== CARD PRINCIPAL ===================================================== -->
-    <div class="col-12">
+    <!-- ================================================================================================== -->
+    <!-- =========================== SPINNER LOADING ======================================================= -->
+    <app-spinner-loading *ngIf="showSpinner"></app-spinner-loading>
+    <!-- =================================================================================================== -->
+    <!-- =========================== CARD PRINCIPAL ======================================================= -->
+    <div class="col-12" *ngIf="movie">
       <div class="card mb-3 bg-dark text-white">
         <div class="row g-0">
           <div class="col-md-4">
@@ -39,7 +42,15 @@
                       *ngFor="let genre of movie.genres"
                       class="list-group-item text-white"
                     >
-                      {{ genre.name }}
+                      <a
+                        [routerLink]="[
+                          '/movies-api/genre',
+                          genre.id,
+                          genre.name
+                        ]"
+                      >
+                        {{ genre.name }}
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -65,11 +76,12 @@
         </div>
       </div>
     </div>
-    <!-- ===================================================================================================
-    ==================================== VIDEO YOUTUBE ===================================================== -->
-    <div *ngIf="trailerMovies?.length !== 0" class="col-12">
+
+    <!-- =================================================================================================== -->
+    <!-- =========================== TRAILER VIDEO YOUTUBE ======================================================= -->
+    <div class="col-12" *ngIf="trailerMovies?.length !== 0">
       <div class="bg-dark">
-        <div class="p-3 m-3">
+        <div class="p-md-3 p-2 mb-3">
           <h1 class="text-white">Trailer</h1>
           <div *ngFor="let trailer of trailerMovies" class="col-12">
             <h1 class="text-white">{{ trailer.name }}</h1>
@@ -87,6 +99,66 @@
                 ></iframe>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================================================================================================== -->
+    <!-- =========================== CARD RECOMENDATION MOVIES ======================================================= -->
+    <div class="col-12" *ngIf="similarMovies.length > 0">
+      <div class="bg-dark p-3 my-3 text-white">
+        <h2 class="font-weight-light">Peliculas relacionadas</h2>
+        <div class="row mx-auto my-auto justify-content-center">
+          <div
+            id="recipeCarousel"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner text-center" role="listbox">
+              <div
+                *ngFor="let movie of similarMovies; let index = index"
+                [ngClass]="{ active: index === 1 }"
+                class="carousel-item"
+              >
+                <div class="col-md-3">
+                  <div class="card w-100 h-100 bg-dark text-white">
+                    <a
+                      [routerLink]="['/movies-api/movie', movie?.id]"
+                      class="w-100 h-100"
+                    >
+                      <img
+                        [src]="movie.poster_path"
+                        class="card-img w-100 h-100"
+                        alt="..."
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a
+              class="carousel-control-prev m-2 bg-transparent w-aut"
+              href="#recipeCarousel"
+              role="button"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+            </a>
+            <a
+              class="carousel-control-next m-2 bg-transparent w-aut"
+              href="#recipeCarousel"
+              role="button"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+            </a>
           </div>
         </div>
       </div>

@@ -117,7 +117,8 @@ export class ApiService {
         })
       );
   }
-
+  //=============================================================================================
+  //============================ GET TRAILER VIDEOS =============================================
   getVideoMovies(id: string): Observable<TrailersMovies[]> {
     let params = this.httpParams();
     params = params.delete('page');
@@ -142,7 +143,7 @@ export class ApiService {
               return trailer;
             });
 
-          return movies.splice(0, 4) as TrailersMovies[];
+          return movies.splice(0, 1) as TrailersMovies[];
         })
       );
   }
@@ -161,6 +162,30 @@ export class ApiService {
       .pipe(
         map((response: any) => {
           return response.genres as Genre[];
+        })
+      );
+  }
+
+  //===============================================================================
+  //============================ GET ALL GENRES MOVIES ============================
+  getSimilarMovies(movieId: string): Observable<Movie[]> {
+    let params = this.httpParams();
+    params = params.delete('page');
+    params = params.delete('query');
+
+    return this.http
+      .get<any[]>(`${this.urlEndPoint}/movie/${movieId}/similar`, {
+        params: params,
+      })
+      .pipe(
+        map((response: any) => {
+          return response.results.map((movie: Movie) => {
+            movie.backdrop_path = this.convertPathToImageURL(
+              movie.backdrop_path
+            );
+            movie.poster_path = this.convertPathToImageURL(movie.poster_path);
+            return movie;
+          });
         })
       );
   }

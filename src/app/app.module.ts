@@ -8,16 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from './pages/pages.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SafePipe } from './pipes/safe.pipe';
 import { SharedModule } from './shared/shared.module';
-import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
-  declarations: [AppComponent, PaginationComponent],
+  declarations: [AppComponent],
   imports: [
+    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserModule,
     NoopAnimationsModule,
     HttpClientModule,
     MatSliderModule,

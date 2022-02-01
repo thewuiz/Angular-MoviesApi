@@ -1,26 +1,38 @@
-.list-group {
-  height: 400px;
-  margin-bottom: 10px;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* =============================== CARD ============================================= */
+/* ============================================= CARD ============================================= */
 .card-img-top {
-  height: 40vh;
+  height: 50vh;
   width: 100%;
   object-fit: cover;
 }
 
-/* .card-body {
-  height: 250px;
-} */
+@media (max-width: 767px) {
+  .card-img-top {
+    height: 40vh;
+    width: 100%;
+    object-fit: cover;
+  }
+}
 
-/* =============================== CAROUSEL ============================================= */
-.carousel-item img {
-  width: 100%;
-  object-fit: cover;
-  max-height: 500px;
+.card-group .card {
+  border: none;
+}
+
+/* ============================================= CAROUSEL ============================================= */
+
+@media (min-width: 768px) {
+  .carousel-item img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 500px;
+  }
+}
+
+@media (max-width: 767px) {
+  .carousel-item img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 700px;
+  }
 }
 
 .carousel-caption {
@@ -35,10 +47,4 @@
   text-align: justify;
   padding-left: 20px;
   padding-right: 20px;
-}
-
-/* =============================== spinner ============================================= */
-.spinner-grow {
-  height: 200px;
-  width: 200px;
 }
