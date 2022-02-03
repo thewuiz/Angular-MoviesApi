@@ -14,11 +14,12 @@ import { SharedModule } from './shared/shared.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NoopAnimationsModule,
-    HttpClientModule,
     MatSliderModule,
+    //
     AppRoutingModule,
     PagesModule,
     SharedModule,

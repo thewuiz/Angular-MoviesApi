@@ -91,7 +91,7 @@
       <!-- =========================== CARD GROUP MOVIES ==================================================== -->
       <div class="col-12">
         <h1 class="pt-1 text-white">{{ titulo }}</h1>
-        <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 row-cols-sm-2">
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 row-cols-sm-2">
           <div class="col p-1 p-md-2" *ngFor="let movie of movies">
             <a [routerLink]="['/movies-api/movie', movie.id]">
               <img
